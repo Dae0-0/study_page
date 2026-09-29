@@ -170,6 +170,7 @@ MAIN
     background-size: cover;
     background-blend-mode: screen;
     height: 100vh;
+    justify-content: center;
     color: var(--grey); /* 다크 모드에서도 글자 어둡게 유지 */
     animation: bg-color 24s infinite;  /* @keyframes bg-color 설정해야 나옴. */
 
