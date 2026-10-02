@@ -77,4 +77,35 @@ updateClock(); // 함수 호출, 페이지를 열자마자 한 번 실행
 // 정해진 시간(밀리초)마다 함수를 계속 실행
 setInterval(updateClock, 1000); // 이후 1초마다 반복 실행
 
+// 커리큘럼 탭 메뉴
+const tabBtns = document.querySelectorAll('.tab-btn'); // 모든 탭 버튼을 가져와 tabBtns 변수에 저장
+const tabPanels = document.querySelectorAll('.tab-panel'); // 모든 탭 패널을 가져와 tabPanels 변수에 저장
 
+tabBtns.forEach((tab) => { // 각 탭 버튼에 클릭 이벤트를 등록
+    tab.addEventListener('click', () => { // 클릭하면 실행되는 함수
+        tabBtns.forEach((b) => b.classList.remove('active')); // 클릭한 버튼에만 active 클래스 붙이기
+        // 클릭한 버튼의 data-tab 속성값과 같은 id를 가진 패널에 active 클래스 붙이기
+        tabPanels.forEach((p) => p.classList.remove('active')); 
+
+        // 클릭한 버튼에 active 클래스 붙이기
+        tab.classList.add('active');
+        // 클릭한 버튼의 data-tab 속성값과 같은 id를 가진 패널에 active 클래스 붙이기
+        document.getElementById(tab.dataset.tab).classList.add('active'); 
+    });
+});
+
+// 스터디 사진 갤러리
+const galleryMain = document.querySelector('.gallery-main'); // 큰 사진
+const galleryThumbs = document.querySelectorAll('.gallery-thumbs img'); // 작은 사진들
+
+galleryThumbs.forEach((thumb) => { // 작은 사진들 각각에 클릭 이벤트 등록
+    thumb.addEventListener('click', () => { // 클릭하면 실행되는 함수
+        galleryMain.src = thumb.src; // 큰 사진의 src를 클릭한 작은 사진의 src로 변경
+        galleryMain.alt = thumb.alt; // 큰 사진의 alt를 클릭한 작은 사진의 alt로 변경
+
+        // 모든 작은 사진에서 active 클래스 제거
+        galleryThumbs.forEach((t) => t.classList.remove('active'));
+        // 클릭한 작은 사진에만 active 클래스 추가
+        thumb.classList.add('active');
+    });
+});
